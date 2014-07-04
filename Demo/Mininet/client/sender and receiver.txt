@@ -1,21 +1,21 @@
-sender.py
+#sender.py
 
+#------------------------------------------
 from socket import *
 import time
 s = socket(AF_INET, SOCK_DGRAM)
 msg = "Demo for multicast text transfer!"
 i = 0
 
-while True: # i < 10:
+while i < 20:
 	s.sendto(msg, ("10.0.0.1", 10000))
 	#time.sleep(0.1)
-	#i += 1
+	i += 1
 s.close()
 
 
+#receiver.py
 -------------------------------------------
-
-receiver.py
 
 from socket import *
 s = socket(AF_INET, SOCK_DGRAM)
