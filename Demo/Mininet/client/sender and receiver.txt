@@ -1,0 +1,37 @@
+sender.py
+
+from socket import *
+import time
+s = socket(AF_INET, SOCK_DGRAM)
+msg = "Demo for multicast text transfer!"
+i = 0
+
+while True: # i < 10:
+	s.sendto(msg, ("10.0.0.1", 10000))
+	#time.sleep(0.1)
+	#i += 1
+s.close()
+
+
+-------------------------------------------
+
+receiver.py
+
+from socket import *
+s = socket(AF_INET, SOCK_DGRAM)
+s.bind(("", 10000))
+s.settimeout(600)
+i = 1
+while True:
+	data, addr = s.recvfrom(2048)
+	if not data:
+		print "client has exist"
+		break
+	try:
+		print "%dth received packet: " %(i,), data, "from", addr
+		i += 1
+	except s.timeout:
+		print "time out"
+		break
+s.close()
+-------------------------------------------
