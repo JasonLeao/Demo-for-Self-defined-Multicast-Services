@@ -1,4 +1,4 @@
-sender.py
+#sender.py
 
 from socket import *
 import time
